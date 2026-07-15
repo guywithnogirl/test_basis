@@ -1,0 +1,28 @@
+name: Deploy React to S3
+on:
+  push:
+      branches:
+        - main
+permissions: 
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+      runs-on: ubuntu-latest
+
+      steps:
+        - uses: actions/checkout@v4
+
+        - uses: actions/setup-node@v4
+          with:
+            node-verson: 22
+
+        - run: npm ci
+        - run: npm run build
+        - uses: aws-actions/configure-aws-credentials@v4
+          with:
+              role-to-assume: arn:aws:iam::067712566220:role/github
+              aws:region: eu-north-1
+        - run: aws s3 sync dist/ s3://gg-myr --delete
+        
