@@ -29,7 +29,7 @@ jobs:
 
       - uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::067712566220:role/github
+          role-to-assume: arn:aws:iam::067712566220:role/deployreacttoggyr
           aws-region: eu-north-1
 
       - run: aws s3 sync dist/ s3://gg-myr --delete
