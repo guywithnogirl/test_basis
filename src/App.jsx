@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 function App(){
   const [message, setMessage] = useState("Loading...");
   useEffect(() => {
-    fetch("https://razorpay-test.duckdns.org:8000/api/hello/")
+    fetch("https://razorpay-test.duckdns.org/api/hello/")
     .then(response => response.json())
     .then(data => setMessage(data.message))
     .catch(error => console.error(error));
